@@ -4,15 +4,24 @@ channels:
   - defaults
   - fastai
 dependencies:
-  - fastcore=1.5.43
+  - annotated-types
+  - bqplot
+  - fastcore
+  - ipydatagrid
+  - ipyfilechooser
+  - ipykernel
   - ipywidgets>8
   - matplotlib
-  - ipykernel
   - jupyter
   - jupyterlab
   - notebook
-  - nbdev=2.3.25
+  - nbdev
+  - openpyxl
   - pandas
+  - pydantic
   - python=3.11
   - statsmodels
-  - voila
+  - traittypes
+  - voila>=0.5.6
+  - pip
+    - ipyautoui
