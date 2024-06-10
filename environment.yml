@@ -1,18 +1,31 @@
-name: widgets-2024
+name: complexapps-2024
 channels:
   - conda-forge
   - defaults
   - fastai
 dependencies:
-  - ipywidgets >8
-  - matplotlib
-  - pandas
-  - jupyterlab
+  - annotated-types
+  - bqplot
+  - fastcore
+  - immutables
+  - ipydatagrid
+  - ipyfilechooser
   - ipykernel
+  - ipyvuetify
+  - ipywidgets>8
+  - markdown
+  - matplotlib
   - jupyter
-  - voila
+  - jupyterlab
   - notebook
-  - nbdev=2.3.25
+  - nbdev
+  - openpyxl
+  - pandas
+  - pip
+  - pydantic
   - python=3.11
-  - fastcore=1.5.43
   - statsmodels
+  - traittypes
+  - voila>=0.5.6
+  - pip:
+      - ipyautoui

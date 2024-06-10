@@ -3,7 +3,7 @@
 ## Outline is based on the proposal; modifications are welcome
 
 1. Intro to widgets
-    a. Follow the rough flow of notebook 01 from 20223, introducing one of the widgets (e.g. slider) that we will use later. Also include list/widget showing all the widgets.
+    a. Follow the rough flow of notebook 01 from 2023, introducing one of the widgets (e.g. slider) that we will use later. Also include list/widget showing all the widgets.
     b. Demo showing a pandas dataframe with ipydatagrid
 2. `nbdev` motivation and demonstration -- essentially follow part of 2023 tutorial.
     a. Motivation for using nbdev -- generating python modules from notebooks, mention the other features we are not exploring.
