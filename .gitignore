@@ -1,2 +1,5 @@
 .vscode/ltex.dictionary.en-US.txt
 .ipynb_checkpoints
+data/output.csv
+dashboard/*.py
+__pycache__
