@@ -6,14 +6,13 @@ __all__ = ['DATA_DIR', 'DATA_FILE', 'original_df', 'year_range', 'selected_df', 
            'on_window_size_change', 'display_plot']
 
 # %% ../02b_widgets.ipynb 8
-# %answer key/dashboard/widgets.py 6
+# %answer key/dashboard/widgets.py 8
 
 import pandas as pd
 import os
 from matplotlib import pyplot as plt
 from scipy.signal import savgol_filter
-# add import statement for Jupyter widgets
-import ipywidgets as widgets
+import ipywidgets as widgets  # add import statement for Jupyter widgets
 
 # %% ../02b_widgets.ipynb 12
 # Load data into memory from file
@@ -42,16 +41,12 @@ selected_df = original_df[(original_df['Year'] >= year_range.value[0]) & (origin
 # years selected by the user using the year_range widget
 def on_range_change(change):
     global selected_df
-    selected_df = original_df[(original_df['Year'] >= year_range.value[0]) & (original_df['Year'] <= year_range.value[1])] 
-
-# Attach the above function to the 'value' attribute of the widget so that
-# it gets called whenever a trait of the widget changes.
-year_range.observe(on_range_change, 'value')
+    selected_df = original_df[(original_df['Year'] >= change['new'][0]) & (original_df['Year'] <= change['new'][1])]
 
 # %% ../02b_widgets.ipynb 46
 # %answer key/dashboard/widgets.py  46
 
-year_range.observe(on_range_change, 'value')
+year_range.observe(on_range_change, 'value') # year_range.observe()
 
 # %% ../02b_widgets.ipynb 50
 # Create an Output widget to display the selected data
