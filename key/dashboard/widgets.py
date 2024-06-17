@@ -6,13 +6,12 @@ __all__ = ['DATA_DIR', 'DATA_FILE', 'original_df', 'year_range', 'selected_df', 
            'output_plot']
 
 # %% ../02b_widgets.ipynb 8
-# %answer key/dashboard/widgets.py 8
 
 import pandas as pd
 import os
 from matplotlib import pyplot as plt
 from scipy.signal import savgol_filter
-import ipywidgets as widgets  # add import statement for Jupyter widgets
+import ipywidgets as widgets # add import statement for Jupyter widgets
 
 # %% ../02b_widgets.ipynb 12
 # Load data into memory from file
@@ -25,13 +24,11 @@ original_df = pd.read_csv(os.path.join(DATA_DIR, DATA_FILE), escapechar='#')
 year_range = widgets.IntRangeSlider(description = 'Range of Years')
 
 # %% ../02b_widgets.ipynb 21
-# %answer key/dashboard/widgets.py 21
 
 year_range.max =  max(original_df['Year']) # set the 'max' attribute of the slider to the minimum year of the our data
 year_range.min = min(original_df['Year'])  # and let's do the same for 'min'
 
 # %% ../02b_widgets.ipynb 27
-# %answer key/dashboard/widgets.py 27
 
 selected_df = original_df[(original_df['Year'] >= year_range.value[0]) & (original_df['Year'] <= year_range.value[1])] # selected_df = original_df[(original_df['Year'] >= from_year) & (original_df['Year'] <= to_year)]
 
@@ -49,7 +46,6 @@ def on_range_change(change):
     # not dependent on the name of the widget.
 
 # %% ../02b_widgets.ipynb 46
-# %answer key/dashboard/widgets.py  46
 
 year_range.observe(on_range_change, 'value') # year_range.observe()
 
@@ -68,48 +64,49 @@ def update_selected_datagrid(change):
 year_range.observe(update_selected_datagrid, 'value')
 
 # %% ../02b_widgets.ipynb 71
-window_size = widgets.IntSlider(description = 'Window Size', min=1, max=100)
+window_size = widgets.IntSlider(description = 'Window Size', value=20, min=1, max=100)
 
 # %% ../02b_widgets.ipynb 74
-poly_order = widgets.BoundedIntText(description = 'Poly Order', min=0, max=10)
+poly_order = widgets.BoundedIntText(description = 'Poly Order', min=0, value=3, max=10)
 
-# %% ../02b_widgets.ipynb 82
-# %answer key/dashboard/widgets.py 82
+# %% ../02b_widgets.ipynb 83
 
 def on_poly_order_change(change):
     global original_df, selected_df
-    original_df['Smoothed Data'] = savgol_filter(original_df['Temperature'], window_size.value, change['new']) # original_df['Smoothed Data'] = savgol_filter(original_df['Temperature'], window_size, poly_order)
+    # catch the change in the poly_order widget value and update the original_df
+    original_df['Smoothed Data'] = savgol_filter(original_df['Temperature'], window_size.value, change['new']).round(decimals=3) # original_df['Smoothed Data'] = savgol_filter(original_df['Temperature'], window_size, poly_order).round(decimal=3)
     selected_df = original_df[(original_df['Year'] >= year_range.value[0]) & (original_df['Year'] <= year_range.value[1])]
 
-# %% ../02b_widgets.ipynb 83
+# %% ../02b_widgets.ipynb 84
 poly_order.observe(on_poly_order_change, 'value')
 window_size.observe(update_selected_datagrid, 'value')
 
-# %% ../02b_widgets.ipynb 90
-# %answer key/dashboard/widgets.py 90
+# %% ../02b_widgets.ipynb 89
 
 def on_window_size_change(change):
     global original_data, selected, poly_order
-    # change the maximum of the poly_order widget
-    original_df['Smoothed Data'] = savgol_filter(original_df['Temperature'], change['new'], poly_order.value)
-    selected_df = original_df[(original_df['Year'] >= year_range.value[0]) & (original_df['Year'] <= year_range.value[1])]
+    poly_order.max = min(10, change['new'] - 1) # change the maximum of the poly_order widget
+    # catch the change in the window_size widget value and update the original_df
+    original_df['Smoothed Data'] = savgol_filter(original_df['Temperature'],
+                                                 change['new'],
+                                                 poly_order.value).round(decimals=3)
+    selected_df = original_df[(original_df['Year'] >= year_range.value[0])
+                              & (original_df['Year'] <= year_range.value[1])]
 
 
-# %% ../02b_widgets.ipynb 92
+# %% ../02b_widgets.ipynb 91
 window_size.observe(on_window_size_change, 'value')
 window_size.observe(update_selected_datagrid, 'value')
 
-# %% ../02b_widgets.ipynb 96
+# %% ../02b_widgets.ipynb 95
 window_size.value = 10
 poly_order.value = 1
 
-# %% ../02b_widgets.ipynb 101
-# %answer key/dashboard/widgets.py 101
+# %% ../02b_widgets.ipynb 99
 
 plot_view = widgets.Output() # create an output widget called plot_output
 
-# %% ../02b_widgets.ipynb 105
-# %answer key/dashboard/widgets.py 105
+# %% ../02b_widgets.ipynb 103
 
 def output_plot(change):
     plot_view.clear_output(wait=True)
@@ -117,15 +114,14 @@ def output_plot(change):
         plt.xlabel('Year')
         plt.ylabel('Temperature')
         plt.title('Global Temperature versus Time')
-        plt.plot(selected_df['Year'], selected_df['Temperature'])
-        plt.plot(selected_df['Year'], selected_df['Smoothed Data'])
-        plt.legend()
+        plt.plot(selected_df['Year'], selected_df['Temperature'], label='Raw Data')
+        plt.plot(selected_df['Year'], selected_df['Smoothed Data'], label='Smoothed Data')
         plt.show()
 
-# %% ../02b_widgets.ipynb 109
+# %% ../02b_widgets.ipynb 107
 year_range.observe(output_plot, 'value')
 window_size.observe(output_plot, 'value')
 poly_order.observe(output_plot, 'value')
 
-# %% ../02b_widgets.ipynb 111
+# %% ../02b_widgets.ipynb 109
 year_range.value = (1900, 2000)
