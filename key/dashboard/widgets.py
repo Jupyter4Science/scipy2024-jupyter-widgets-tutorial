@@ -13,7 +13,7 @@ from matplotlib import pyplot as plt
 from scipy.signal import savgol_filter
 import ipywidgets as widgets # add import statement for Jupyter widgets
 
-# %% ../02b_widgets.ipynb 12
+ # %% ../02b_widgets.ipynb 12
 # Load data into memory from file
 DATA_DIR = 'data'
 DATA_FILE = 'land-ocean-temp-index.csv'
