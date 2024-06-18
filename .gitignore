@@ -3,3 +3,4 @@
 data/output.csv
 dashboard/*.py
 __pycache__
+.vscode/settings.json
