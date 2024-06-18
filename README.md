@@ -35,15 +35,10 @@ We will follow the notebooks in the tutorial sequentially, starting with
 ## Binder
 
 You can launch these notebooks in a Binder environment by clicking the
-badge below. This requires not extra installation on your part. Just
+badge below. This requires no extra installation of software on your part. Just
 click the link and follow along.
 
-<div>
-[![](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/Jupyter4Science/scipy2024-jupyter-widgets-tutorial/HEAD)
-
-Binder
-
-</div>
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/Jupyter4Science/scipy2024-jupyter-widgets-tutorial/tree/main/main?labpath=00_welcome.ipynb)
 
 ### How long will my Binder session last?
 
