@@ -20,7 +20,10 @@ DATA_FILE = 'land-ocean-temp-index.csv'
 original_df = pd.read_csv(os.path.join(DATA_DIR, DATA_FILE), escapechar='#')
 
 # %% ../02b_widgets.ipynb 14
-year_range = widgets.IntRangeSlider(description = 'Range of Years')
+year_range = widgets.IntRangeSlider(description = 'Range of Years',
+                                    style={'description_width': 'initial'})
+# The style argument is used to set the width of the description wide enough
+# to display the entire text
 
 # %% ../02b_widgets.ipynb 20
 year_range.max =  max(original_df['Year']) # set the 'max' attribute of the slider to the minimum year of the our data
@@ -61,10 +64,12 @@ def update_selected_datagrid(change):
 year_range.observe(update_selected_datagrid, 'value')
 
 # %% ../02b_widgets.ipynb 71
-window_size = widgets.IntSlider(description = 'Window Size', value=20, min=1, max=100)
+window_size = widgets.IntSlider(description = 'Window Size', value=20, min=1, max=100,
+                                style={'description_width': 'initial'})
 
 # %% ../02b_widgets.ipynb 74
-poly_order = widgets.BoundedIntText(description = 'Poly Order', min=0, value=3, max=10)
+poly_order = widgets.BoundedIntText(description = 'Poly Order', min=0, value=3, max=10,
+                                    style={'description_width': 'initial'})
 
 # %% ../02b_widgets.ipynb 83
 def on_poly_order_change(change):
