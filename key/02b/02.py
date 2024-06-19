@@ -1,5 +1,4 @@
 
-
 plt.xlabel('Year')
 plt.ylabel('Temperature Anomalies over Land w.r.t. 1951-80 (˚C)')
 plt.title('Global Annual Mean Surface Air Temperature Change')
