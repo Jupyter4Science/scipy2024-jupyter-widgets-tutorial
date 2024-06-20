@@ -26,6 +26,7 @@ dependencies:
   - python=3.11
   - statsmodels
   - traittypes
+  - voici
   - voila>=0.5.6
   - pip:
       - ipyautoui
