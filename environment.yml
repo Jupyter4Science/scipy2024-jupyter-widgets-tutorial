@@ -5,11 +5,9 @@ channels:
   - fastai
 dependencies:
   - annotated-types
-  - bqplot
   - fastcore
   - immutables
   - ipydatagrid
-  - ipyfilechooser
   - ipykernel
   - ipyvuetify
   - ipywidgets>8
