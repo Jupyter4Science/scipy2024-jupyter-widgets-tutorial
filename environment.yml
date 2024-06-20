@@ -5,11 +5,9 @@ channels:
   - fastai
 dependencies:
   - annotated-types
-  - bqplot
   - fastcore
   - immutables
   - ipydatagrid
-  - ipyfilechooser
   - ipykernel
   - ipyvuetify
   - ipywidgets>8
@@ -19,7 +17,6 @@ dependencies:
   - jupyterlab
   - notebook
   - nbdev
-  - openpyxl
   - pandas
   - pip
   - pydantic
