@@ -13,11 +13,11 @@ dependencies:
   - ipywidgets>8
   - markdown
   - matplotlib
+  - micromamba
   - jupyter
   - jupyterlab
   - notebook
   - nbdev
-  - openpyxl
   - pandas
   - pip
   - pydantic
