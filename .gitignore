@@ -4,3 +4,5 @@ data/output.csv
 dashboard/*.py
 __pycache__
 .vscode/settings.json
+voici_project/_output
+voici_project/.jupyterlite.doit.db
