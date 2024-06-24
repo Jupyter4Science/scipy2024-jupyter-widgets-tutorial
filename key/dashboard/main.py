@@ -61,7 +61,7 @@ html_layout = widgets.Layout(max_width = '500px')
 intro_text = widgets.HTML(value = INTRO_TEXT, layout = html_layout)
 data_source_text = widgets.HTML(value = SOURCES_TEXT, layout = html_layout)
 
-# %% ../02c_layout.ipynb 42
+# %% ../02c_layout.ipynb 43
 # Define the widget containing the curve smoothing parameters
 curve_parameters_layout = widgets.Layout(width='500px', justify_content='space-between')
 curve_parameter_widgets = widgets.HBox(children=(window_size, poly_order), 
@@ -88,10 +88,10 @@ for child in desc_and_ctrl_box.children: # how might we add padding to each of t
 # Add a vertical box holding both table and plot visualizations of selected data
 data_box = widgets.VBox(children = (selected_data_accordion, plot_view)) # add the selected_data_accordion and the plot_output to a VBox widget called data_box
 
-# %% ../02c_layout.ipynb 57
+# %% ../02c_layout.ipynb 56
 main_widget = widgets.HBox(children = (desc_and_ctrl_box, data_box))
 
-# %% ../02c_layout.ipynb 60
+# %% ../02c_layout.ipynb 59
 data_box.layout.margin = '0 0 0 30px'  # top, right, bottom, left
 data_box.layout.align_items = 'flex-end'
 selected_data_accordion.layout.width = '88%'
