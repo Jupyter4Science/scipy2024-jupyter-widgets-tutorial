@@ -52,7 +52,7 @@ year_range.observe(on_range_change, 'value') # year_range.observe()
 # %% ../02b_widgets.ipynb 62
 from ipydatagrid import DataGrid
 
-# Define a DatGrid widget containing our Pandas dataframe setting column and row sizes
+# Define a DataGrid widget containing our Pandas dataframe setting column and row sizes
 selected_data_grid = DataGrid(selected_df, header_visibility="column", auto_fit_columns=True)
 
 # %% ../02b_widgets.ipynb 65
@@ -64,11 +64,11 @@ def update_selected_datagrid(change):
 year_range.observe(update_selected_datagrid, 'value')
 
 # %% ../02b_widgets.ipynb 71
-window_size = widgets.IntSlider(description = 'Window Size', value=20, min=1, max=100,
+window_size = widgets.IntSlider(description = 'Window Size', value=20, min=2, max=100,
                                 style={'description_width': 'initial'})
 
 # %% ../02b_widgets.ipynb 74
-poly_order = widgets.BoundedIntText(description = 'Poly Order', min=0, value=3, max=10,
+poly_order = widgets.BoundedIntText(description = 'Poly Order', min=1, value=3, max=10,
                                     style={'description_width': 'initial'})
 
 # %% ../02b_widgets.ipynb 83

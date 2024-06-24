@@ -29,17 +29,16 @@ selected_data_grid.layout.height = '200px'
 
 # %% ../02c_layout.ipynb 22
 selected_data_accordion = widgets.Accordion(titles=('Selected Data',))
-selected_data_accordion
 
-# %% ../02c_layout.ipynb 27
+# %% ../02c_layout.ipynb 28
 
 selected_data_accordion.children = (selected_data_grid,)
 
-# %% ../02c_layout.ipynb 31
+# %% ../02c_layout.ipynb 32
 
 selected_data_accordion.selected_index = 0
 
-# %% ../02c_layout.ipynb 34
+# %% ../02c_layout.ipynb 35
 INTRO_TEXT = '''
 <p><b>Curve Smoothing</b>
 This tool is for smoothing and selecting global mean surface temperature data for visualization. Start by selecting a date
@@ -60,38 +59,38 @@ This site is based on data downloaded from the following site on 2024-06-17:
 target="_blank">Global Annual Mean Surface Air Temperature Change (NASA)</a>
 '''
 
-# %% ../02c_layout.ipynb 36
+# %% ../02c_layout.ipynb 37
 intro_text = widgets.HTML(value = INTRO_TEXT, layout = widgets.Layout(max_width = '500px'))
 data_source_text = widgets.HTML(value = SOURCES_TEXT, layout = widgets.Layout(max_width = '500px'))
 
-# %% ../02c_layout.ipynb 42
+# %% ../02c_layout.ipynb 43
 # Define the widget containing the curve smoothing parameters
 curve_parameters_layout = widgets.Layout(width = '500px', justify_content = 'space-between')
 curve_parameter_widgets = widgets.HBox(children = (window_size, poly_order), 
                                        layout=curve_parameters_layout)
 
-# %% ../02c_layout.ipynb 47
+# %% ../02c_layout.ipynb 46
 
 # Create a VBox to hold the description and control widgets
 desc_and_ctrl_box = widgets.VBox()
 # add children intro_text, data_source_text, year_range, curve_parameter_widgets
 desc_and_ctrl_box.children = (intro_text, data_source_text, year_range, curve_parameter_widgets)
 
-# %% ../02c_layout.ipynb 52
+# %% ../02c_layout.ipynb 51
 
 # how might we add padding to each of the widgets
 for child in desc_and_ctrl_box.children: # how might we add padding to each of the widgets
     child.layout.margin = '15px 0 15px 0'  # top, right, bottom, left
 
-# %% ../02c_layout.ipynb 54
+# %% ../02c_layout.ipynb 53
 
 # Add a vertical box holding both table and plot visualizations of selected data
 data_box = widgets.VBox(children = (selected_data_accordion, plot_view)) # add the selected_data_accordion and the plot_output to a VBox widget called data_box
 
-# %% ../02c_layout.ipynb 57
+# %% ../02c_layout.ipynb 56
 main_widget = widgets.HBox(children = (desc_and_ctrl_box, data_box))
 
-# %% ../02c_layout.ipynb 60
+# %% ../02c_layout.ipynb 59
 data_box.layout.margin = '0 0 0 30px'  # top, right, bottom, left
 data_box.layout.align_items = 'flex-end'
 selected_data_accordion.layout.width = '88%'
