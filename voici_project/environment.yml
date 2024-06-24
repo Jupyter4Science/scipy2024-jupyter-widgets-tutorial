@@ -8,3 +8,4 @@ dependencies:
   - ipywidgets
   - ipydatagrid
   - matplotlib
+  - scipy
