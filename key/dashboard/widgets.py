@@ -26,11 +26,12 @@ year_range = widgets.IntRangeSlider(description = 'Range of Years',
 # to display the entire text
 
 # %% ../02b_widgets.ipynb 20
-year_range.max =  max(original_df['Year']) # set the 'max' attribute of the slider to the minimum year of the our data
-year_range.min = min(original_df['Year'])  # and let's do the same for 'min'
+year_range.max = max(original_df['Year']) # set the 'max' attribute of the slider to the minimum year of the our data
+year_range.min = min(original_df['Year']) # and let's do the same for 'min'
 
 # %% ../02b_widgets.ipynb 26
-selected_df = original_df[(original_df['Year'] >= year_range.value[0]) & (original_df['Year'] <= year_range.value[1])] # selected_df = original_df[(original_df['Year'] >= from_year) & (original_df['Year'] <= to_year)]
+selected_df = original_df[(original_df['Year'] >= year_range.value[0])     # selected_df = original_df[(original_df['Year'] >= from_year) 
+                           & (original_df['Year'] <= year_range.value[1])] #                           & (original_df['Year'] <= to_year)]
 
 # %% ../02b_widgets.ipynb 36
 # Create a function that will change the selected_df based on the range of
@@ -55,7 +56,7 @@ from ipydatagrid import DataGrid
 # Define a DataGrid widget containing our Pandas dataframe setting column and row sizes
 selected_data_grid = DataGrid(selected_df, header_visibility="column", auto_fit_columns=True)
 
-# %% ../02b_widgets.ipynb 65
+# %% ../02b_widgets.ipynb 67
 # Create a handler function that will display the selected dataframe
 def update_selected_datagrid(change):
     selected_data_grid.data = selected_df
@@ -63,15 +64,15 @@ def update_selected_datagrid(change):
 # Attach the handler function to the year_range widget
 year_range.observe(update_selected_datagrid, 'value')
 
-# %% ../02b_widgets.ipynb 71
+# %% ../02b_widgets.ipynb 73
 window_size = widgets.IntSlider(description = 'Window Size', value=20, min=2, max=100,
                                 style={'description_width': 'initial'})
 
-# %% ../02b_widgets.ipynb 74
+# %% ../02b_widgets.ipynb 76
 poly_order = widgets.BoundedIntText(description = 'Poly Order', min=1, value=3, max=10,
                                     style={'description_width': 'initial'})
 
-# %% ../02b_widgets.ipynb 84
+# %% ../02b_widgets.ipynb 85
 def on_poly_order_change(change):
     global original_df, selected_df
     # Change the following line that sets the 'Smoothed Data' column of original_df
@@ -83,11 +84,11 @@ def on_poly_order_change(change):
     selected_df = original_df[(original_df['Year'] >= year_range.value[0])
                               & (original_df['Year'] <= year_range.value[1])]
 
-# %% ../02b_widgets.ipynb 85
+# %% ../02b_widgets.ipynb 86
 poly_order.observe(on_poly_order_change, 'value')
 window_size.observe(update_selected_datagrid, 'value')
 
-# %% ../02b_widgets.ipynb 90
+# %% ../02b_widgets.ipynb 91
 def on_window_size_change(change):
     global original_data, selected_df, poly_order
     poly_order.max = min(10, change['new'] - 1) # change the maximum of the poly_order widget
@@ -98,18 +99,18 @@ def on_window_size_change(change):
     selected_df = original_df[(original_df['Year'] >= year_range.value[0])
                               & (original_df['Year'] <= year_range.value[1])]
 
-# %% ../02b_widgets.ipynb 92
+# %% ../02b_widgets.ipynb 93
 window_size.observe(on_window_size_change, 'value')
 window_size.observe(update_selected_datagrid, 'value')
 
-# %% ../02b_widgets.ipynb 96
+# %% ../02b_widgets.ipynb 97
 window_size.value = 10
 poly_order.value = 1
 
-# %% ../02b_widgets.ipynb 100
+# %% ../02b_widgets.ipynb 101
 plot_view = widgets.Output() # create an output widget called plot_view
 
-# %% ../02b_widgets.ipynb 102
+# %% ../02b_widgets.ipynb 103
 def output_plot(change):
     plot_view.clear_output(wait=True)
     with plot_view:  # Add with content handler for `plot_view`
@@ -121,10 +122,10 @@ def output_plot(change):
         plt.legend()
         plt.show()
 
-# %% ../02b_widgets.ipynb 107
+# %% ../02b_widgets.ipynb 108
 year_range.observe(output_plot, 'value')
 window_size.observe(output_plot, 'value')
 poly_order.observe(output_plot, 'value')
 
-# %% ../02b_widgets.ipynb 109
+# %% ../02b_widgets.ipynb 110
 year_range.value = (1900, 2000)
