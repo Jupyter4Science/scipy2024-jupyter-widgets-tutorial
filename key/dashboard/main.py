@@ -4,6 +4,11 @@
 __all__ = ['selected_data_accordion', 'INTRO_TEXT', 'SOURCES_TEXT', 'html_layout', 'intro_text', 'data_source_text',
            'curve_parameters_layout', 'curve_parameter_widgets', 'desc_and_ctrl_box', 'data_box', 'main_widget']
 
+# %% ../02c_layout.ipynb 6
+import ipywidgets as widgets
+from dashboard.widgets import (year_range, window_size, poly_order, selected_data_grid,
+                               update_selected_datagrid, plot_view, output_plot) # import year_range, window_size, poly_order, selected_data_grid, update_selected_datagrid, plot_view, output_plot
+
 # %% ../02c_layout.ipynb 17
 # Change the width of the year_range widget (makes year range selection easier to see)
 year_range.layout.width = '500px'
@@ -18,12 +23,16 @@ selected_data_grid.layout.width = '350px'
 selected_data_grid.layout.height = '200px'
 
 # %% ../02c_layout.ipynb 23
-selected_data_accordion = widgets.Accordion(titles=('Selected Data',),)
+selected_data_accordion = widgets.Accordion(titles=('Selected Data',))
 
 # %% ../02c_layout.ipynb 29
+# %answer key/dashboard/main.py 29
+
 selected_data_accordion.children = (selected_data_grid,)
 
 # %% ../02c_layout.ipynb 33
+# %answer key/dashboard/main.py 33
+
 selected_data_accordion.selected_index = 0
 
 # %% ../02c_layout.ipynb 36
@@ -59,17 +68,23 @@ curve_parameter_widgets = widgets.HBox(children=(window_size, poly_order),
                                        layout=curve_parameters_layout)
 
 # %% ../02c_layout.ipynb 47
+# %answer key/dashboard/main.py 47
+
 # Create a VBox to hold the description and control widgets
 desc_and_ctrl_box = widgets.VBox()
 # add children intro_text, data_source_text, year_range, curve_parameter_widgets
 desc_and_ctrl_box.children = (intro_text, data_source_text, year_range, curve_parameter_widgets)
 
 # %% ../02c_layout.ipynb 52
+# %answer key/dashboard/main.py 52
+
 # how might we add padding to each of the widgets
 for child in desc_and_ctrl_box.children: # how might we add padding to each of the widgets
     child.layout.margin = '15px 0 15px 0'  # top, right, bottom, left
 
 # %% ../02c_layout.ipynb 54
+# %answer key/dashboard/main.py 54
+
 # Add a vertical box holding both table and plot visualizations of selected data
 data_box = widgets.VBox(children = (selected_data_accordion, plot_view)) # add the selected_data_accordion and the plot_output to a VBox widget called data_box
 
