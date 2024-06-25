@@ -71,20 +71,25 @@ window_size = widgets.IntSlider(description = 'Window Size', value=20, min=2, ma
 poly_order = widgets.BoundedIntText(description = 'Poly Order', min=1, value=3, max=10,
                                     style={'description_width': 'initial'})
 
-# %% ../02b_widgets.ipynb 83
+# %% ../02b_widgets.ipynb 84
 def on_poly_order_change(change):
     global original_df, selected_df
-    # catch the change in the poly_order widget value and update the original_df
-    original_df['Smoothed Data'] = savgol_filter(original_df['Temperature'], window_size.value, change['new']).round(decimals=3) # original_df['Smoothed Data'] = savgol_filter(original_df['Temperature'], window_size, poly_order).round(decimal=3)
-    selected_df = original_df[(original_df['Year'] >= year_range.value[0]) & (original_df['Year'] <= year_range.value[1])]
+    # Change the following line that sets the 'Smoothed Data' column of original_df
+    # to catch the change in poly_order widget value and update the original_df for it.
+    # Remember to also catch the current window_size value.
+    original_df['Smoothed Data'] = savgol_filter(original_df['Temperature'],
+                                                 window_size.value,
+                                                 change['new']).round(decimals=3)
+    selected_df = original_df[(original_df['Year'] >= year_range.value[0])
+                              & (original_df['Year'] <= year_range.value[1])]
 
-# %% ../02b_widgets.ipynb 84
+# %% ../02b_widgets.ipynb 85
 poly_order.observe(on_poly_order_change, 'value')
 window_size.observe(update_selected_datagrid, 'value')
 
-# %% ../02b_widgets.ipynb 89
+# %% ../02b_widgets.ipynb 90
 def on_window_size_change(change):
-    global original_data, selected, poly_order
+    global original_data, selected_df, poly_order
     poly_order.max = min(10, change['new'] - 1) # change the maximum of the poly_order widget
     # catch the change in the window_size widget value and update the original_df
     original_df['Smoothed Data'] = savgol_filter(original_df['Temperature'],
@@ -93,18 +98,18 @@ def on_window_size_change(change):
     selected_df = original_df[(original_df['Year'] >= year_range.value[0])
                               & (original_df['Year'] <= year_range.value[1])]
 
-# %% ../02b_widgets.ipynb 91
+# %% ../02b_widgets.ipynb 92
 window_size.observe(on_window_size_change, 'value')
 window_size.observe(update_selected_datagrid, 'value')
 
-# %% ../02b_widgets.ipynb 95
+# %% ../02b_widgets.ipynb 96
 window_size.value = 10
 poly_order.value = 1
 
-# %% ../02b_widgets.ipynb 99
+# %% ../02b_widgets.ipynb 100
 plot_view = widgets.Output() # create an output widget called plot_view
 
-# %% ../02b_widgets.ipynb 101
+# %% ../02b_widgets.ipynb 102
 def output_plot(change):
     plot_view.clear_output(wait=True)
     with plot_view:  # Add with content handler for `plot_view`
@@ -113,12 +118,13 @@ def output_plot(change):
         plt.title('Global Annual Mean Surface Air Temperature Change')
         plt.plot(selected_df['Year'], selected_df['Temperature'], label='Raw Data')
         plt.plot(selected_df['Year'], selected_df['Smoothed Data'], label='Smoothed Data')
+        plt.legend()
         plt.show()
 
-# %% ../02b_widgets.ipynb 106
+# %% ../02b_widgets.ipynb 107
 year_range.observe(output_plot, 'value')
 window_size.observe(output_plot, 'value')
 poly_order.observe(output_plot, 'value')
 
-# %% ../02b_widgets.ipynb 108
+# %% ../02b_widgets.ipynb 109
 year_range.value = (1900, 2000)
