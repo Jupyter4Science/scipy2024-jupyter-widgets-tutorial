@@ -29,6 +29,8 @@ selected_data_accordion = widgets.Accordion(titles=('Selected Data',))
 # %answer key/dashboard/main.py 29
 
 # %% ../02c_layout.ipynb 29
+# %answer key/dashboard/main.py 29
+
 selected_data_accordion.children = (selected_data_grid,)
 
 # %% ../02c_layout.ipynb 33
