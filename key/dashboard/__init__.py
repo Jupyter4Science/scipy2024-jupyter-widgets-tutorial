@@ -4,6 +4,7 @@
 __all__ = ['exception', 'answer', 'export']
 
 # %% ../02a_nbdev.ipynb 8
+# TODO: add the missing export directive to export this cell to the dashboard module
 from IPython import get_ipython
 from IPython.core.magic import register_line_magic, register_cell_magic
 import re
