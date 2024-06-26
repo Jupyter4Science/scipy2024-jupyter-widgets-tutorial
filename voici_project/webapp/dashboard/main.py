@@ -5,8 +5,10 @@ __all__ = ['selected_data_accordion', 'INTRO_TEXT', 'SOURCES_TEXT', 'html_layout
            'curve_parameters_layout', 'curve_parameter_widgets', 'desc_and_ctrl_box', 'data_box', 'main_widget']
 
 # %% ../02c_layout.ipynb 6
+# %answer key/dashboard/main.py 6
+
 import ipywidgets as widgets
-from dashboard.widgets import (year_range, window_size, poly_order, selected_data_grid,
+from .widgets import (year_range, window_size, poly_order, selected_data_grid,
                                update_selected_datagrid, plot_view, output_plot) # import year_range, window_size, poly_order, selected_data_grid, update_selected_datagrid, plot_view, output_plot
 
 # %% ../02c_layout.ipynb 17
@@ -24,9 +26,6 @@ selected_data_grid.layout.height = '200px'
 
 # %% ../02c_layout.ipynb 23
 selected_data_accordion = widgets.Accordion(titles=('Selected Data',))
-
-# %% ../02c_layout.ipynb 29
-# %answer key/dashboard/main.py 29
 
 # %% ../02c_layout.ipynb 29
 # %answer key/dashboard/main.py 29
