@@ -25,12 +25,14 @@ please follow these instructions:
     environment called `complexapps-2024`
 4.  Run `conda activate complexapps-2024` to activate the conda
     environment
-5.  Run `jupyter lab` to launch JupyterLab
+5.  Change directory into the tutorial materials and run `jupyter lab` to launch JupyterLab
 
 ## How to use
 
 We will follow the notebooks in the tutorial sequentially, starting with
 `00_welcome.ipynb`.
+
+**Put a post-it on your computer when you have this notebook open.**
 
 ## Binder
 
