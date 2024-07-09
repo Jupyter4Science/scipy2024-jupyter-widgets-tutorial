@@ -26,7 +26,7 @@ year_range = widgets.IntRangeSlider(description = 'Range of Years',
 # to display the entire text
 
 # %% ../02b_widgets.ipynb 20
-year_range.max = max(original_df['Year']) # set the 'max' attribute of the slider to the minimum year of the our data
+year_range.max = max(original_df['Year']) # set the 'max' attribute of the slider to the maximum year of the our data
 year_range.min = min(original_df['Year']) # and let's do the same for 'min'
 
 # %% ../02b_widgets.ipynb 26
@@ -86,7 +86,7 @@ def on_poly_order_change(change):
 
 # %% ../02b_widgets.ipynb 86
 poly_order.observe(on_poly_order_change, 'value')
-window_size.observe(update_selected_datagrid, 'value')
+poly_order.observe(update_selected_datagrid, 'value')
 
 # %% ../02b_widgets.ipynb 91
 def on_window_size_change(change):
