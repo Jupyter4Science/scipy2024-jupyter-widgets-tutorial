@@ -73,7 +73,7 @@ curve_parameter_widgets = widgets.HBox(children=(window_size, poly_order),
 # %% ../02c_layout.ipynb 47
 # %answer key/dashboard/main.py 47
 
-# Create a VBox to hold the description and control widgets
+# Create a VBox called `desc_and_ctrl_box` to hold the description and control widgets
 desc_and_ctrl_box = widgets.VBox()
 # add children intro_text, data_source_text, year_range, curve_parameter_widgets
 desc_and_ctrl_box.children = (intro_text, data_source_text, year_range, curve_parameter_widgets)
