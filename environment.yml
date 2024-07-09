@@ -22,6 +22,7 @@ dependencies:
   - pip
   - pydantic
   - python=3.11
+  - solara
   - statsmodels
   - traittypes
   - voici
