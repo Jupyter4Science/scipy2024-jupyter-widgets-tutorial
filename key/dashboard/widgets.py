@@ -86,7 +86,7 @@ def on_poly_order_change(change):
 
 # %% ../02b_widgets.ipynb 86
 poly_order.observe(on_poly_order_change, 'value')
-window_size.observe(update_selected_datagrid, 'value')
+poly_order.observe(update_selected_datagrid, 'value')
 
 # %% ../02b_widgets.ipynb 91
 def on_window_size_change(change):
